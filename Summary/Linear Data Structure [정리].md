@@ -333,8 +333,8 @@ There can be some other operations as well such as merging and the empty operati
 	
 	
 ### 🔗 출처	
-* [Data Structure 참고 사이트] (https://velog.io/@k904808/Data-Structure자료구조)
+* [Data Structure 참고 사이트](https://velog.io/@k904808/Data-Structure자료구조)
 * [배열과 리스트 참고 사이트 1](https://wayhome25.github.io/cs/2017/04/17/cs-18-1/)     
 * [배열과 리스트 참고 사이트 2](https://opentutorials.org/module/1335/8636)
-* [Linear Data Structure 참고 사이트] (https://www.upgrad.com/blog/what-is-linear-data-structure/)
-* [링크드 리스트 참고 사이트] (https://opentutorials.org/module/1335/8821)
+* [Linear Data Structure 참고 사이트](https://www.upgrad.com/blog/what-is-linear-data-structure/)
+* [링크드 리스트 참고 사이트](https://opentutorials.org/module/1335/8821)
