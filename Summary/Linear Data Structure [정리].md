@@ -56,6 +56,10 @@ These structures can therefore be summarized as a type of data structure where t
 
 #### ✏️ Arrary (배열)
 
+The array is that type of structure that stores homogeneous elements at memory locations **<u>which are contiguous</u>**. The **<u>same types</u> of objects are stored <u>sequentially</u> in an array**.    
+The main idea of an array is that **multiple data of the same type can be stored together**.    
+Before storing the data in an array, the **<u>size of the array has to be defined</u>**. Any element in the array can be accessed or modified and the elements stored are **<u>indexed</u>** to identify their locations. Simple traversal of the array can lead to the access of the elements.
+
 - 데이터가 많아지면 그룹 관리의 필요성이 생기는데, 이럴 때 프로그래밍에서 사용
 
 - 여러 데이터를 하나의 이름으로 그룹핑해서 관리 하기 위한 자료구조
@@ -104,11 +108,11 @@ These structures can therefore be summarized as a type of data structure where t
 
 - **삭제한 데이터를 뒤에 위치한 element로 메꾸면, <u>데이터가 순서에 따라서 빈틈없이 연속적으로 위치</u>하며 이를 <u>list(리스트)</u>** 라고 한다.
 
-- 리스트 자료구조의 핵심은 엘리먼트들 간의 순서. 따라서 리스트를 다른 말로는 시퀀스(sequence) 라고도 부른다. 즉 순서가 있는 데이터의 모임이 리스트이다.   
+- 리스트 자료구조의 핵심은 elements 간의 순서. 따라서 리스트를 다른 말로는 시퀀스(sequence) 라고도 부른다. 즉 순서가 있는 데이터의 모임이 리스트이다.   
 
-- 리스트에서 인덱스는 몇 번째 데이터인가 정도의 의미를 가진다. (배열-Array에서의 인덱스는 값에 대한 유일무이한 식별자)   
+- 리스트에서 인덱스는 **<u>몇 번째 데이터인가</u>** 정도의 의미를 가진다. (배열-Array에서의 인덱스는 값에 대한 유일무이한 식별자)   
 
-- 빈 엘리먼트는 허용하지 않는다.   
+- 빈 element는 허용하지 않는다.   
 
 - 순차성을 보장하지 못하기 때문에 spacial locality 보장이 되지 않아서 cash hit가 어렵다.   
 
@@ -182,7 +186,7 @@ numbers.remove(0); // 삭제
 
 - 이와같이 처리하고자 하는 데이터에 따라서 어떤 데이터 스트럭쳐를 선택할지를 잘 판단하는 것은 대규모 시스템을 구축하는데는 필수적인 능력이다.    
 
-- 이러한 판단을 하기 위해서는 직접 데이터 스트럭쳐를 구현해서 사용하지 않더라도 내부적인 메커니즘을 이해할 필요가 있다.    
+- 이러한 판단을 하기 위해서는 직접 Data structure를 구현해서 사용하지 않더라도 내부적인 메커니즘을 이해할 필요가 있다.    
 
 <img width="634" alt="Screen Shot 2022-01-05 at 5 02 04 PM" src="https://user-images.githubusercontent.com/63195670/148181935-e6b7f444-bc24-49a0-812c-8b1b9d49f54c.png">    
 
@@ -198,4 +202,139 @@ Array List는 배열을 이용해서 리스트를 구현한 것을 의미한다.
 
 - 데이터 조회(가져오기) : 인덱스를 이용하여 데이터를 가져오고 싶을 때 Array로 구현한 리스트는 속도가 매우 빠르다. (메모리 상의 주소를 정확하게 참고해서 가져오기 때문이다.).   
 
+🏹 Linked List
+
+Linked List는 노드의 연결을 이용해서 리스트를 구현한 것을 의미한다.    
+- 장점 : 데이터의 추가와 삭제 속도가 빠르다.   
+- 단점 : 인덱스를 이용해서 접근하는 것이 Array List에 비해 상대적으로 느리다.     
+
+- 데이터의 추가 : 추가될 엘리먼트의 이전, 이후 노드의 참조값(next)만 변경하면 되기 때문에 빠르다   
+
+- 데이터의 삭제 : 삭제가 될 엘리먼트의 이전, 이후 노드의 참조값(next)만 변경하면 되기 때문에 빠르다.    
+
+- 데이터 조회(가져오기) : 인덱스를 이용해서 데이터를 조회할 때 linked list는 head가 가리키는 노드부터 시작해서 순차적으로 노드를 찾아가는 과정을 거쳐야 한다. 만약 찾고자 하는 엘리먼트가 가장 끝에 있다면 모든 노드를 탐색해야 하기에 Array List에 비해 느리다.
+
 </div>
+
+
+### [2] Linked list
+
+Linked List는 Array List와는 다르게 엘리먼트와 엘리먼트 간의 연결(link)을 이용해서 리스트를 구현한 것을 의미한다. Linked list에서 가장 중요한 것은 연결이 무엇인가를 파악하는 것과 또 연결이 아닌 것은 무엇인가를 생각해보는 것이라고 할 수 있음.
+
+<img width="275" alt="Screen Shot 2022-01-05 at 5 30 44 PM" src="https://user-images.githubusercontent.com/63195670/148185621-18d03000-1114-4e52-9699-c4e70e3b3c11.png">
+
+배열과는 다르게 Linked list는 그 위치가 흩어져 있기 때문에 서로 연결되어 있어야 한다. 바로 그런 점에서 연결이라는 이름을 갖게 된 것! 
+
+Array list에서는 element라는 이름을 사용했지만 Linked list와 같이 연결된 엘리먼트들은 노드(node, 마디, 교점의 의미) 혹은 버텍스(vertex, 정점, 꼭지점의 의미)라고 부른다. 연결성이 강조된 표현이라고 생각하면 됨!
+
+The linked list is that type of data structure where separate objects are stored sequentially. Every object stored in the data structure will have the data and a reference to the next object. The last node of the linked list has a reference to null. The first element of the linked list is known as the head of the list. There are many differences between a linked list to the other types of data structures. These are in terms of memory allocation, the internal structure of the data structure, and the operations carried on the linked list. 
+
+Getting to an element in a linked list is a slower process compared to the arrays as the indexing in an array helps in locating the element. However, in the case of a linked list, the process has to start from the head and traverse through the whole structure until the desired element is reached. In contrast to this, the advantage of using linked lists is that the addition or deletion of elements at the beginning can be done very quickly. 
+
+There are three types of linked lists:
+
+#### ✏️ Single Linked List
+
+This type of structure has the address or the reference of the next node stored in the current node. Therefore, a node which at the last has the address and reference as a NULL. 
+
+<img width="651" alt="Screen Shot 2022-01-05 at 5 33 45 PM" src="https://user-images.githubusercontent.com/63195670/148185957-500d1c23-d225-45b1-8044-659328d28f05.png">
+
+##### 👀 Example
+A->B->C->D->E->NULL
+
+#### ✏️ A Double Linked List
+
+As the name suggests, each node has two references associated with it. One reference directs to the previous node while the second reference points to the next node. Traversal is possible in both directions as reference is available for the previous nodes. Also, explicit access is not required for deletion. 
+
+##### 👀 Example
+NULL<-A<->B<->C<->D<->E->NULL
+
+#### ✏️ Linked List which is circular
+
+The nodes in a circular linked list are connected in a way that a circle is formed. As the linked list is circular there is no end and hence no NULL. This type of linked list can follow the structure of both singly or doubly. There is no specific starting node and any node from the data can be the starting node. The reference of the last node points towards the first node. 
+
+##### 👀 Example
+A->B->C->D->E
+
+#### ✏️ Properties of a linked list
+
+- Access time: O(n) 
+- Searching time: O(n)
+- Adding element: O(1) 
+- Deleting  an Element : O(1) 
+
+### [3] Stack
+The stack is another type of structure where the elements stored in the data structure follow the rule of LIFO (last in, first out) or FILO (First In Last Out). Two types of operations are associated with a stack i.e. push and pop. Push is used when an element has to be added to the collection and pop is used when the last element has to be removed from the collection. Extraction can be carried out for only the last added element.
+
+#### ✏️ Properties of a stack are:
+
+- Adding element: O(1)
+- deleting element:  O(1)
+- Accessing Time: O(n) [Worst Case]
+
+Only one end allows inserting and deleting an element.
+Examples of the stack include the removal of recursion. In scenarios where a word has to be reversed, or while using editors when the word that was last typed will be removed first (using an undo operation), stacks are used. 
+
+### [4] Queue
+Queue is the type of data structure where the elements to be stored follow the rule of First In First Out (FIFO). The particular order is followed for performing the required operations over the elements. The difference of a queue from that of a stack lies in the removal of an element, where the most recently added object is removed first in a stack. Whereas, in the case of a queue, the element that was added first is removed first.
+
+Both the end of the data structure is used for the insertion and the removal of data. The two main operations governing the structure of the queue are enqueue, and dequeue. Enqueue refers to the process where inserting an element is allowed to the collection of data and dequeue refers to the process where removal of elements is allowed, which is the first element in the queue in this case.
+
+#### ✏️ Properties of a queue are
+
+- Inserting an element: O(1)
+- Deleting an element: O(1)
+- Accessing Time: O(n)
+
+Example of the queue: Similar to those queues made while waiting for the bus or anywhere, the data structure too follows the same pattern. We can imagine a person waiting for the bus and standing at the first position as the person that came to the queue first. This person will be the first one who will get onto a bus, i.e. exit the queue. Queues are applied when multiple users are sharing the same resources and they have to be served on the basis of who has come first on the server. 
+
+
+<div class="notice--primary" markdown="1">
+🌝 <strong><u>여기서 잠깐!</u> : <u>What is the difference between linear and non-linear data structures?</u></strong>   
+
+The following illustrates the significant differences between the linear and non-linear data structures:   
+
+🏹 <strong><u>Linear Data Structure</u></strong>  
+1. In linear data structures, each element is linearly connected to each other having reference to the next and previous elements.  
+2. Implementation is quite easy as only a single level is involved.   
+3. Wastage of memory is much more common in linear data structures.   
+4. Stacks, Queues, Arrays, and Linked lists are all examples of linear data structures.   
+
+🏹 <strong><u>Non-Linear Data Structure</u></strong>   
+1. In non-linear data structures, the elements are connected in a hierarchical manner.   
+2. Implementation is much more complex as multiple levels are involved.   
+3. Memory is consumed wisely and there is almost no wastage of memory.   
+4. Graphs and trees are examples of non-linear data structures.   
+</div>
+
+<div class="notice--primary" markdown="1">
+🌝 <strong><u>여기서 잠깐!</u> : <u>In what ways are linked lists more efficient than arrays?</u></strong>   
+
+The following points elaborate the ways in which linked lists are much more efficient than arrays:   
+
+🏹 <strong><u>Dynamic Memory allocation</u></strong>   
+The memory of a linked list is dynamically located which means that there is no need to initialize the size and it can be expanded as well as shrink anytime without implying any exterior operation.   
+On the other hand, arrays are statically allocated and the size has to be initialized. Once created, the size cannot be altered.   
+
+🏹 <strong><u>Insertion and Deletion</u></strong>    
+Since a linked list is dynamically created, operations like insertion and deletion are much more convenient.   
+
+🏹 <strong><u>No memory wastage</u></strong>    
+There is no memory wastage in a linked list as all the elements are dynamically inserted. And after the deletion of an element, we can free its memory.    
+</div>
+
+<div class="notice--primary" markdown="1">
+🌝 <strong><u>여기서 잠깐!</u> : <u>What are the most common operations performed in linear data structures?</u></strong>   
+
+The common possible operations that can be performed in all linear data structures include traversing, insertion, deletion, modification, search operation, and sort operation.    
+These operations are recognized by different names in different data structures. For example, the insertion and deletion operations are known as Push and Pop operations in Stack, whereas they are referred to as enqueue and dequeue operations in Queue.     
+There can be some other operations as well such as merging and the empty operation to check if the data structure is empty or not.    
+</div>
+	
+	
+### 🔗 출처	
+* [Data Structure 참고 사이트] (https://velog.io/@k904808/Data-Structure자료구조)
+* [배열과 리스트 참고 사이트 1](https://wayhome25.github.io/cs/2017/04/17/cs-18-1/)     
+* [배열과 리스트 참고 사이트 2](https://opentutorials.org/module/1335/8636)
+* [Linear Data Structure 참고 사이트] (https://www.upgrad.com/blog/what-is-linear-data-structure/)
+* [링크드 리스트 참고 사이트] (https://opentutorials.org/module/1335/8821)
