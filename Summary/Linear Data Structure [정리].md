@@ -223,7 +223,7 @@ Linked List는 Array List와는 다르게 엘리먼트와 엘리먼트 간의 �
 
 <img width="275" alt="Screen Shot 2022-01-05 at 5 30 44 PM" src="https://user-images.githubusercontent.com/63195670/148185621-18d03000-1114-4e52-9699-c4e70e3b3c11.png">
 
-배열과는 다르게 Linked list는 그 위치가 흩어져 있기 때문에 서로 연결되어 있어야 한다. 바로 그런 점에서 연결이라는 이름을 갖게 된 것! 
+배열과는 다르게 Linked list는 메모리상 그 위치가 흩어져 있기 때문에 서로 연결되어 있어야 한다. 바로 그런 점에서 연결이라는 이름을 갖게 된 것! 
 
 Array list에서는 element라는 이름을 사용했지만 Linked list와 같이 연결된 엘리먼트들은 노드(node, 마디, 교점의 의미) 혹은 버텍스(vertex, 정점, 꼭지점의 의미)라고 부른다. 연결성이 강조된 표현이라고 생각하면 됨!
 
@@ -235,9 +235,15 @@ There are three types of linked lists:
 
 #### ✏️ Single Linked List
 
-This type of structure has the address or the reference of the next node stored in the current node. Therefore, a node which at the last has the address and reference as a NULL. 
+This type of structure has **<u>the address or the reference of the next node</u>** stored in the current node. Therefore, a node which at the last has the address and reference as a NULL.  
 
-<img width="651" alt="Screen Shot 2022-01-05 at 5 33 45 PM" src="https://user-images.githubusercontent.com/63195670/148185957-500d1c23-d225-45b1-8044-659328d28f05.png">
+그럼 linked list의 구조를 알아보자. 리스트는 노드(엘리먼트)들의 모임이기에 내부적으로 노드를 가지고 있어야 한다. array list의 경우 엘리먼트가 배열의 엘리먼트였던 반면, linked list는 배열 대신에 다른 구조를 사용한다.
+
+노드는 <u>노드의 값</u>과 <u>다음 노드</u>라는 최소한 두 가지 정보를 알고 있어야 한다. 각각의 노드가 다음 노드를 알고 있기 때문에 하나의 연결된 값의 모임을 만들 수 있는 것이다. 아래 그림은 linked list의 구조를 보여준다.
+
+<img width="651" alt="Screen Shot 2022-01-05 at 5 33 45 PM" src="https://user-images.githubusercontent.com/63195670/148185957-500d1c23-d225-45b1-8044-659328d28f05.png">   
+
+이것을 구현하는 방법은 여러가지다. 만약 사용 언어가 C라면 구조체, 자바와 같은 객체지향 언어라면 객체에 데이터 필드와 링크 필드를 만든다. 보통 **<u>데이터 필드</u>**는 value라는 이름의 변수, **<u>링크 필드</u>**는 next 변수를 사용하는데, value에는 **<u>노드의 값</u>이 저장**되고, next에는 **<u>다음 노드의 포인터나 참조값</u>**을 저장해서 노드와 노드를 연결시키는 방법을 사용함!
 
 ##### 👀 Example
 A->B->C->D->E->NULL
@@ -246,12 +252,49 @@ A->B->C->D->E->NULL
 
 As the name suggests, each node has two references associated with it. One reference directs to the previous node while the second reference points to the next node. Traversal is possible in both directions as reference is available for the previous nodes. Also, explicit access is not required for deletion. 
 
+doubly linked list의 핵심은 노드와 노드가 서로 연결되어 있다는 점이다. 아래 그림을 보면 단순 연결 리스트(linked list)와는 다르게 **<u>노드가 이전 노드(previous)와 다음 노드(next)로 구성되어 있다</u>**는 것을 확인할 수 있다.    
+
+<img width="617" alt="Screen Shot 2022-01-07 at 9 55 06 AM" src="https://user-images.githubusercontent.com/63195670/148473920-b5a0cbbe-2df5-4888-815b-2654ed95a6f5.png">   
+
+이것의 가장 큰 장점은 양방향으로 연결되어 있기 때문에 노드를 탐색하는 방향이 양쪽으로 가능하다는 것이다.
+
+##### 👀 장점
+양방향 탐색의 가장 큰 장점은 <u>특정 인덱스 위치의 엘리먼트를 가져올 때</u>와 <u>반복자를 이용해서 탐색할 때</u> 드러난다.
+
+**<u>인덱스의 데이터 가져오기</u>**   
+노드가 6개일 때 3번째 엘리먼트 이전은 처음부터 시작해서 next를 이용해서 탐색하고, 4번째 이후의 엘리먼트는 마지막 노드부터 previous를 이용해서 조회한다. 단순 연결 리스트가 최악의 경우 노드 전체를 탐색해야 했던 것에 비해서 양방향 연결 리스트는 탐색해야하는 엘리먼트가 반으로 줄어 들게 됨!     
+아래 그림을 보면 더 명확한 이해가 가능할 것이다.    
+
+<img width="516" alt="Screen Shot 2022-01-07 at 10 02 20 AM" src="https://user-images.githubusercontent.com/63195670/148474348-d96a1459-7a7a-4fbe-984e-21c6309e60de.png">    
+
+**<u>노드 탐색하기</u>**   
+단방향 연결 리스트는 다음 노드의 탐색만 가능했던 것에 비해서 이중 연결 리스트의 경우 앞뒤로 탐색이 가능하다. 상황에 따라 탐색의 방향이 바뀌어야 하는 경우라면 이중 연결 리스트를 사용하는 것이 좋음!      
+
+<img width="509" alt="Screen Shot 2022-01-07 at 10 04 08 AM" src="https://user-images.githubusercontent.com/63195670/148474463-54e86461-f235-4982-94c9-5e1ae204aa7f.png">
+
+
+##### 👀 단점
+
+우선 이전 노드를 지정하기 위한 변수를 하나 더 사용해야 하기에 메모리를 더 많이 사용한다는 의미이다. 또 구현이 조금 더 복잡해진다는 단점도 있다. 하지만 장점이 크기 때문에 현실에서 사용하는 연결 리스트는 대부분 이중 연결 리스트이다.  
+
 ##### 👀 Example
 NULL<-A<->B<->C<->D<->E->NULL
 
+
 #### ✏️ Linked List which is circular
 
-The nodes in a circular linked list are connected in a way that a circle is formed. As the linked list is circular there is no end and hence no NULL. This type of linked list can follow the structure of both singly or doubly. There is no specific starting node and any node from the data can be the starting node. The reference of the last node points towards the first node. 
+The nodes in a circular linked list are connected in a way that a circle is formed. As the linked list is circular there is no end and hence no NULL. This type of linked list can follow the structure of both singly or doubly. There is no specific starting node and any node from the data can be the starting node. The reference of the last node points towards the first node.  
+
+단일 연결리스트와는 다르게 마지막 노드가 첫 노드와 연결되어 있는 리스트로, 원형으로 연결되어 있다고 하여 원형 연결 리스트라 부른다.
+
+리스트는 몇개의 노드가 들어 있는지 알기 위한 index값과 노드를 탐색할 때 기준 노드를 해주기위한 head와 tail로 나눠지는 건 이미 다 알 것이다. (head는 머리, 즉 리스트의 맨 앞에 있는 노드를 가르키는 것이고 tail은 꼬리 즉, 맨 마지막 노드를 일컫는 말)
+
+원형 linked list에서는 head를 사용해도 되지만, **<u>tail을 사용하는 방법이 좀 더 나은 방법</u>**이다.
+왜냐하면 tail을 기준으로 잡으면 우선 tail 노드를 알 수 있고 tail 노드의 다음 노드는 head 노드이기 때문에 head와 tail을 둘 다 알 수 있음!   
+
+<img width="540" alt="Screen Shot 2022-01-07 at 10 18 22 AM" src="https://user-images.githubusercontent.com/63195670/148475538-14be1e4f-0d07-4474-8bb1-9590b79a91ef.png">
+
+
 
 ##### 👀 Example
 A->B->C->D->E
@@ -264,7 +307,18 @@ A->B->C->D->E
 - Deleting  an Element : O(1) 
 
 ### [3] Stack
-The stack is another type of structure where the elements stored in the data structure follow the rule of LIFO (last in, first out) or FILO (First In Last Out). Two types of operations are associated with a stack i.e. push and pop. Push is used when an element has to be added to the collection and pop is used when the last element has to be removed from the collection. Extraction can be carried out for only the last added element.
+The stack is another type of structure where the elements stored in the data structure follow the rule of LIFO (last in, first out) or FILO (First In Last Out). Two types of operations are associated with a stack i.e. push and pop. Push is used when an element has to be added to the collection and pop is used when the last element has to be removed from the collection. Extraction can be carried out for only the last added element.   
+
+한 쪽 끝에서만 자료를 넣고 뺄 수 있는, 가장 최근에 스택에 추가한 항목이 가장 먼저 제거되는 **<u>LIFO(Last In First Out)</u>** 형식의 자료 구조이다.    
+
+<img width="298" alt="Screen Shot 2022-01-07 at 10 44 36 AM" src="https://user-images.githubusercontent.com/63195670/148477708-926b7366-cf4a-41b2-997e-9143b8824894.png">
+
+#### ✏️ 스택(Stack)의 연산
+
+- **<u>pop()</u>** : 스택에서 가장 위에 있는 항목을 제거한다.
+- **<u>push(item)</u>** : item 하나를 스택의 가장 윗 부분에 추가한다.
+- **<u>peek()(top())</u>** : 스택의 가장 위에 있는 항목을 반환한다.
+- **<u>isEmpty()</u>** : 스택이 비어 있을 때에 true를 반환한다.
 
 #### ✏️ Properties of a stack are:
 
@@ -273,12 +327,45 @@ The stack is another type of structure where the elements stored in the data str
 - Accessing Time: O(n) [Worst Case]
 
 Only one end allows inserting and deleting an element.
-Examples of the stack include the removal of recursion. In scenarios where a word has to be reversed, or while using editors when the word that was last typed will be removed first (using an undo operation), stacks are used. 
+Examples of the stack include the removal or recursion. In scenarios where a word has to be reversed, or while using editors when the word that was last typed will be removed first (using an undo operation), stacks are used.  
+
+재귀 알고리즘을 사용하는 경우 스택이 유용하다.  
+다음은 스택의 사용 사례들!
+
+- 재귀 알고리즘
+	- 재귀적으로 함수를 호출해야 하는 경우에 임시 데이터를 스택에 넣어준다.
+	- 재귀함수를 빠져 나와 퇴각 검색(backtrack)을 할 때는 스택에 넣어 두었던 임시 데이터를 빼 줘야 한다.
+	- 스택은 이런 일련의 행위를 직관적으로 가능하게 해 준다.
+	- 또한 스택은 재귀 알고리즘을 반복적 형태(iterative)를 통해서 구현할 수 있게 해준다.
+- 웹 브라우저 방문기록 (뒤로가기)
+- 실행 취소 (undo)
+- 역순 문자열 만들기
+- 수식의 괄호 검사 (연산자 우선순위 표현을 위한 괄호 검사)
+	- Ex) 올바른 괄호 문자열(VPS, Valid Parenthesis String) 판단하기
+- 후위 표기법 계산
+
+
+문제의 종류에 따라 배열보다 스택에 데이터를 저장하는 것이 더 적합한 방법일 수 있음.
+
+- 배열과 달리 스택은 상수 시간에 i번째 항목에 접근할 수 없다.
+- 하지만 **<u>스택에서 데이터를 추가하거나 삭제하는 연산은 상수 시간에 가능</u>**하다.
+- 배열처럼 원소들을 하나씩 옆으로 밀어 줄 필요가 없다.
 
 ### [4] Queue
 Queue is the type of data structure where the elements to be stored follow the rule of First In First Out (FIFO). The particular order is followed for performing the required operations over the elements. The difference of a queue from that of a stack lies in the removal of an element, where the most recently added object is removed first in a stack. Whereas, in the case of a queue, the element that was added first is removed first.
 
-Both the end of the data structure is used for the insertion and the removal of data. The two main operations governing the structure of the queue are enqueue, and dequeue. Enqueue refers to the process where inserting an element is allowed to the collection of data and dequeue refers to the process where removal of elements is allowed, which is the first element in the queue in this case.
+Both the end of the data structure is used for the insertion and the removal of data. The two main operations governing the structure of the queue are enqueue, and dequeue. Enqueue refers to the process where inserting an element is allowed to the collection of data and dequeue refers to the process where removal of elements is allowed, which is the first element in the queue in this case.   
+
+컴퓨터의 기본적인 자료 구조의 한가지로, 먼저 집어 넣은 데이터가 먼저 나오는 FIFO(First In First Out)구조로 저장하는 형식이다.    
+
+<img width="364" alt="Screen Shot 2022-01-07 at 10 45 57 AM" src="https://user-images.githubusercontent.com/63195670/148477809-6a5f9920-c729-4c8d-b7d5-1ca814f68830.png">
+
+#### ✏️ 큐(Queue)의 연산
+
+- **<u>add(item)</u>** : item을 리스트의 끝부분에 추가한다.
+- **<u>remove()</u>** : 리스트의 첫 번째 항목을 제거한다.
+- **<u>peek()(top())</u>** : 큐에서 가장 위에 있는 항목을 반환한다.
+- **<u>isEmpty()</u>** : 큐가 비어 있을 때에 true를 반환한다.
 
 #### ✏️ Properties of a queue are
 
@@ -288,6 +375,26 @@ Both the end of the data structure is used for the insertion and the removal of 
 
 Example of the queue: Similar to those queues made while waiting for the bus or anywhere, the data structure too follows the same pattern. We can imagine a person waiting for the bus and standing at the first position as the person that came to the queue first. This person will be the first one who will get onto a bus, i.e. exit the queue. Queues are applied when multiple users are sharing the same resources and they have to be served on the basis of who has come first on the server. 
 
+데이터가 입력된 시간 순서대로 처리해야 할 필요가 있는 상황에 이용한다.  
+다음은 큐의 사용 사례들을 가져왔다.
+
+- 너비 우선 탐색(BFS, Breadth-First Search) 구현 → 나중에 다시 다뤄보기! 
+	- 처리해야 할 노드의 리스트를 저장하는 용도로 큐(Queue)를 사용한다.
+	- 노드를 하나 처리할 때마다 해당 노드와 인접한 노드들을 큐에 다시 저장한다.
+	- 노드를 접근한 순서대로 처리할 수 있다.
+- 캐시(Cache) 구현
+- 우선순위가 같은 작업 예약 (인쇄 대기열)
+- 선입선출이 필요한 대기열 (티켓 카운터)
+- 콜센터 고객 대기시간
+- 프린터의 출력 처리
+- 윈도 시스템의 메시지 처리기
+- 프로세스 관리
+
+### [5] Hash Table
+
+아래 Hash Table 정리 링크를 참고하자.
+
+[Hash Table 정리 링크](https://swiftie1230.github.io/algorithm_study/알고리즘활용-HASH-TABLE-정리/)
 
 <div class="notice--primary" markdown="1">
 🌝 <strong><u>여기서 잠깐!</u> : <u>What is the difference between linear and non-linear data structures?</u></strong>   
@@ -330,6 +437,8 @@ The common possible operations that can be performed in all linear data structur
 These operations are recognized by different names in different data structures. For example, the insertion and deletion operations are known as Push and Pop operations in Stack, whereas they are referred to as enqueue and dequeue operations in Queue.     
 There can be some other operations as well such as merging and the empty operation to check if the data structure is empty or not.    
 </div>
+
+다음으로는 Non-linear data structures를 정리한 게시물을 가져와 봐야지〰️🙌
 	
 	
 ### 🔗 출처	
@@ -338,3 +447,7 @@ There can be some other operations as well such as merging and the empty operati
 * [배열과 리스트 참고 사이트 2](https://opentutorials.org/module/1335/8636)
 * [Linear Data Structure 참고 사이트](https://www.upgrad.com/blog/what-is-linear-data-structure/)
 * [링크드 리스트 참고 사이트](https://opentutorials.org/module/1335/8821)
+* [더블리 링크드 리스트 참고 사이트](https://opentutorials.org/module/1335/8940)
+* [원형 링크드 리스트 참고 사이트](https://supark7.tistory.com/entry/원형-연결-리스트-Circular-Linked-List)
+* [스택 참고 사이트](https://gmlwjd9405.github.io/2018/08/03/data-structure-stack.html)
+* [큐 참고 사이트](https://gmlwjd9405.github.io/2018/08/02/data-structure-queue.html)
