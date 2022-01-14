@@ -88,8 +88,8 @@ The minimum element in the array (i.e. 2) is searched for and then swapped with 
 
 <img width="202" alt="image" src="https://user-images.githubusercontent.com/63195670/149432662-7f609e0a-1360-47a5-a4cb-de442cd3e645.png">
 
-또는 array에서 가장 큰 수를 찾은 다음, 찾은 수를 어레이의 맨 끝인 n자리에 놓는다. 
-다음 큰 수를 찾은 다음, 어레이의 n-1자리에 넣는다. 이 때 찾은 수와 해당 자리에 있는 수의 자리를 바꾼다.   
+또는 array에서 가장 큰 수를 찾은 다음, 찾은 수를 array의 맨 끝인 n자리에 놓는다. 
+다음 큰 수를 찾은 다음, array의 n-1자리에 넣는다. 이 때 찾은 수와 해당 자리에 있는 수의 자리를 바꾼다.   
 
 #### 🔮 Implementation 
 
