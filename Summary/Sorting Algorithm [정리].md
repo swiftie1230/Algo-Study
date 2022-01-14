@@ -27,7 +27,7 @@ Sorting Algorithms are concepts that every competitive programmer must know. Sor
 대부분 정렬의 시간복잡도는 <strong><u>O(n*logn)와 O(n^2)사이</u></strong>임. 
 특별한 경우 O(n)까지 가능.
 
-Internal sorting – main memory에서 일어나는 정렬
+Internal sorting – main memory에서 일어나는 정렬   
 External sorting – secondary storage(하드디스크)에서 일어나는 정렬
 
 
