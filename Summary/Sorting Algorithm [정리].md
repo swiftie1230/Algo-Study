@@ -672,10 +672,6 @@ Sorting Algorithm은 여기서 끝 〰️
 	
 	
 ### 🔗 출처	
-* [Non-Linear Data Structure 참고 사이트](https://alldifferences.net/difference-between-linear-and-non-linear-data-structure/)
-* [Graph 참고 사이트](https://gmlwjd9405.github.io/2018/08/13/data-structure-graph.html)
-* [Tree 참고 사이트 1](https://gmlwjd9405.github.io/2018/08/12/data-structure-tree.html)     
-* [Tree 참고 사이트 2](https://jiwondh.github.io/2017/10/15/tree/)
-* [Tree 참고 사이트 3](https://velog.io/@huttels/Binary-Trees-Binary-Search-TreesBST)
-* [힙 참고 사이트 1](https://gmlwjd9405.github.io/2018/05/10/data-structure-heap.html)
-* [힙 참고 사이트 2](https://velog.io/@kjh107704/Heap)
+* [Sorting Algorithms 참고 사이트 1](https://www.hackerearth.com/practice/algorithms/sorting/bubble-sort/practice-problems/)
+* [Sorting Algorithms 참고 사이트 2](https://gmlwjd9405.github.io)
+* 2학년 1학기 때 배운 자료구조 자료..! 
