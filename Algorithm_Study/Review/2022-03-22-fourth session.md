@@ -126,7 +126,65 @@ def tweak_binary_search(arr, target):
 
 ### 📌 <u>값이 array에 있지 않고, 가장 가까운 값을 찾는 Algorithm</u>
 
-- 숙제 아직 진행중..!
+예를 들어 , `[1, 5, 6, 7, 8, 9, 10, 11, 12, 15, 16]`라는 `array`가 주어지고, `target`이 `13`이라면 `13`에 가장 가까운 값인 `12`가 있는 `index 8`을 리턴하는 것!    
+
+이 문제를 접했을 때, 바로 떠오른 생각은 **<u>target의 범위를 최대한 좁힌 후, 그 범위 내에서만 비교를 진행</u>하여 가장 가까운 값을 찾을 수 있지 않을까?** 였다!
+
+그리고 그 방법은 가능했음 😘    
+
+자세한 내용은 아래 주석과 함께 적어놓은 코드를 참고하자!    
+(주석 하나하나 다는 데에도...시간이 걸렸지만..그래도 재밌고 뿌듯했음♡)       
+
+
+```python
+def closest_num_binary_search(arr, target):
+    left_idx = 0
+    right_idx = len(arr) - 1
+
+    while(left_idx <= right_idx):
+        mid_idx = left_idx + (right_idx - left_idx)/2
+
+        # left_idx와 right_idx 범위 내의 값들이 1개 또는 2개로 좁혀졌을 때
+        # target에 가장 가까운 값들로 좁혀졌다고 볼 수 있기에 비교 시작
+        if (mid_idx == left_idx) or (mid_idx == right_idx):
+            
+            # 현재 left_idx의 값이 target보다 클 때. 즉, target이 좁혀진 범위보다 작을 때
+            if arr[left_idx] > target:
+                # 만약 left_idx가 1이라면 left_idx가 target과 가장 가까울 수밖에 없음
+                if left_idx == 1:
+                    return left_idx
+    
+                # 아니라면 left_idx의 값과 left_idx - 1 값 비교 -> 더 가까운 값 리턴
+                if abs(arr[left_idx] - target) > abs(arr[left_idx-1] - target):
+                    return left_idx - 1
+                return left_idx
+            
+            # target이 left_idx와 right_idx 범위 내에 존재할 때
+            elif target < arr[right_idx]:
+                # left_idx와 right_idx 값을 비교 -> 더 가까운 값 리턴
+                if abs(arr[left_idx] - target) > abs(arr[right_idx] - target):
+                    return right_idx
+                return left_idx
+            
+            # 현재 right_idx의 값이 target보다 작을 때. 즉, target이 좁혀진 범위보다 클 때
+            else:
+                # 만약 right_idx가 arr의 마지막 index라면 right_idx가 target과 가장 가까울 수밖에 없음
+                if right_idx == len(arr) - 1:
+                    return right_idx
+
+                # 아니라면 right_idx의 값과 right_idx + 1 값 비교 -> 더 가까운 값 리턴
+                if abs(arr[right_idx] - target) > abs(arr[right_idx+1] - target):
+                    return right_idx+1
+                return right_idx
+
+        # 일단 기존 binary search처럼 target의 범위를 좁히기
+        # 처음부터 굳이 target과 비교하여 가까운지를 따지지 않아도 된다.
+        # 좁아질수록 가까운 값들이니까.
+        if (arr[mid_idx] < target):
+            left_idx = mid_idx + 1
+        else:
+            right_idx = mid_idx - 1
+```
 
 ## 📝 BFS
 
@@ -212,10 +270,6 @@ def BFS(root, target):
 1. BS 다양한 응용들까지!       
 2. BFS
 3. Queue : Dequeue, Enqueue
+4. Python의 abs() 함수! : 절댓값 함수
 
-</div>
-
-
-## 🔗 참고 사이트  
-
-- [BFS](https://gmlwjd9405.github.io/2018/08/15/algorithm-bfs.html)     
+</div>   
