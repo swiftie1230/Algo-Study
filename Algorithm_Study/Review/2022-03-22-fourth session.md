@@ -1,4 +1,4 @@
-# ✏️ <u>Binary Search</u> & <u>BFS</u> : 아직 진행중! 
+# ✏️ <u>Binary Search</u> & <u>BFS</u> 
 
 **Binary Search를 사용할 수 밖에 없는 상황! Binary Search가 많이 사용되는 상황**은 언제일까?   
 
